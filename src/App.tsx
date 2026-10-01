@@ -44,7 +44,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#F9F9F6] text-[#1C1917] selection:bg-[#1E3A2F] selection:text-[#F9F9F6]">
+    <div className="min-h-screen bg-[#0B0D0E] text-[#F2F3F2] selection:bg-[#6FA58B]/25 selection:text-[#F2F3F2]">
       {/* 3-Zone Sticky Navigation Bar */}
       <Navbar activeSection={activeSection} />
 

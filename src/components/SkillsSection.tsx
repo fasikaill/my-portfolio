@@ -2,62 +2,63 @@ import { SKILL_CATEGORIES } from "../data/skills.ts";
 
 export function SkillsSection() {
   return (
-    <section id="skills" className="py-20 md:py-28 border-b border-[#E7E6E0]">
+    <section id="skills" className="py-20 md:py-28 border-b border-[#252A2D]">
       <div className="max-w-[1160px] mx-auto px-6">
-        <div className="mb-14">
-          <div className="text-xs font-mono text-[#1E3A2F] uppercase tracking-wider mb-2">
-            Technical Toolkit
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+          {/* Left Column: Heading and Context */}
+          <div className="lg:col-span-4">
+            <div className="text-xs font-mono text-[#6FA58B] uppercase tracking-wider mb-2">
+              Technical Toolkit
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#F2F3F2] mb-4">
+              Technologies & System Matrix
+            </h2>
+            <p className="text-sm text-[#92999B] leading-relaxed mb-6">
+              A structured index of languages, frontend and backend frameworks, data stores, testing frameworks, and integrations applied across university coursework and software implementations.
+            </p>
+            <div className="hidden lg:block text-xs font-mono text-[#626A6D] pt-4 border-t border-[#1C2124]">
+              No arbitrary percentage meters. All technologies reflected in real projects or coursework.
+            </div>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#1C1917] mb-4">
-            Technologies and disciplines
-          </h2>
-          <p className="text-base text-[#52525B] max-w-2xl leading-relaxed">
-            The programming languages, frameworks, databases, and testing tools I use across academic coursework and software implementations. Grouped by engineering domain without arbitrary percentage ratings.
-          </p>
-        </div>
 
-        {/* 6 Categorized Skill Blocks */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {SKILL_CATEGORIES.map((cat, idx) => (
-            <div
-              key={cat.title}
-              className="bg-white border border-[#D6D3CD] rounded-lg p-6 flex flex-col justify-between hover:border-[#1E3A2F] transition-all shadow-xs"
-            >
-              <div>
-                <div className="flex items-center justify-between border-b border-[#F0EFEA] pb-3 mb-3">
-                  <h3 className="text-base font-bold text-[#1C1917]">
-                    {cat.title}
-                  </h3>
-                  <span className="text-xs font-mono text-[#71717A]">
-                    0{idx + 1}
-                  </span>
-                </div>
+          {/* Right Column: Horizontal Technology System / Skill Matrix */}
+          <div className="lg:col-span-8">
+            <div className="border border-[#252A2D] bg-[#101315] rounded divide-y divide-[#252A2D]">
+              {SKILL_CATEGORIES.map((category) => (
+                <div
+                  key={category.title}
+                  className="p-5 sm:p-6 transition-colors hover:bg-[#14181A]/50"
+                >
+                  {/* Category Monospace Label */}
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="text-[11px] font-mono font-semibold uppercase tracking-wider text-[#6FA58B]">
+                      {category.title}
+                    </span>
+                    <span className="text-[10px] font-mono text-[#626A6D]">
+                      {category.items.length} items
+                    </span>
+                  </div>
 
-                <p className="text-xs text-[#52525B] leading-relaxed mb-4">
-                  {cat.description}
-                </p>
-
-                {/* Unboxed Typographic Skills Display */}
-                <div className="pt-2 border-t border-[#F0EFEA]">
-                  <ul className="space-y-1.5 text-xs">
-                    {cat.items.map((item) => (
-                      <li
-                        key={item}
-                        className="flex items-center justify-between py-0.5 text-[#27272A]"
+                  {/* Horizontal Flowing Technology Tokens */}
+                  <div className="flex flex-wrap gap-2">
+                    {category.items.map((tech) => (
+                      <span
+                        key={tech}
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs text-[#F2F3F2] bg-[#14181A] border border-[#252A2D] rounded hover:border-[#6FA58B]/50 transition-colors"
                       >
-                        <span className="font-medium text-[#1C1917]">{item}</span>
-                        {item === "Java" && (
-                          <span className="text-[11px] text-[#71717A] italic">
-                            Academic & Systems
+                        <span className="font-medium">{tech}</span>
+                        {tech === "Java" && (
+                          <span className="text-[10px] text-[#626A6D] font-mono">
+                            (academic)
                           </span>
                         )}
-                      </li>
+                      </span>
                     ))}
-                  </ul>
+                  </div>
                 </div>
-              </div>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
       </div>
     </section>

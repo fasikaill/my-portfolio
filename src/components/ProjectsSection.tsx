@@ -1,61 +1,58 @@
 import { Project, PROJECTS } from "../data/projects.ts";
-import { Github, ArrowUpRight, ShieldCheck, Binary, Terminal, Layers } from "lucide-react";
+import { Github, ArrowUpRight, ShieldCheck, Layers } from "lucide-react";
 
 interface ProjectsSectionProps {
   onSelectProject: (project: Project) => void;
 }
 
 export function ProjectsSection({ onSelectProject }: ProjectsSectionProps) {
-  const featuredProject = PROJECTS[0]; // Dinkenesh Event Management System
+  const featuredProject = PROJECTS[0]; // Dinkenesh
   const secondaryProjects = PROJECTS.slice(1); // Event Management System & CCMS
 
   return (
-    <section id="work" className="py-20 md:py-28 border-b border-[#E7E6E0]">
+    <section id="work" className="py-20 md:py-28 border-b border-[#252A2D]">
       <div className="max-w-[1160px] mx-auto px-6">
         {/* Section Header */}
         <div className="mb-14">
-          <div className="text-xs font-mono text-[#1E3A2F] uppercase tracking-wider mb-2">
+          <div className="text-xs font-mono text-[#6FA58B] uppercase tracking-wider mb-2">
             Selected Work
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#1C1917] mb-4">
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#F2F3F2] mb-3">
             Projects I’ve actually built
           </h2>
-          <p className="text-base text-[#52525B] max-w-2xl leading-relaxed">
-            These systems represent practical experience designing frontend applications, backend services, relational database schemas, authentication layers, business workflows, APIs, automated test suites, and software architecture.
+          <p className="text-sm sm:text-base text-[#92999B] max-w-2xl leading-relaxed">
+            Full-stack systems representing practical experience with frontend architecture, backend services, relational databases, authentication, real-world workflows, and automated testing.
           </p>
         </div>
 
-        {/* Featured Case Study: Project 01 (Dinkenesh) */}
-        <div className="mb-10 bg-white border border-[#D6D3CD] rounded-lg p-6 sm:p-9 shadow-xs hover:border-[#1E3A2F] transition-all">
-          <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#F0EFEA] pb-5 mb-6">
+        {/* Featured Project 01: Dinkenesh Event Management System */}
+        <div className="mb-12 bg-[#101315] border border-[#252A2D] rounded p-6 sm:p-9 hover:border-[#6FA58B]/40 transition-all">
+          <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#1C2124] pb-4 mb-6">
             <div className="flex items-center gap-3">
-              <span className="text-xs font-mono font-semibold text-[#1E3A2F] tracking-wider uppercase">
-                Featured Case Study 01
+              <span className="text-xs font-mono font-semibold text-[#6FA58B] tracking-wider uppercase">
+                01 · Featured Case Study
               </span>
-              <span className="text-xs text-[#71717A]" aria-hidden="true">
-                ·
-              </span>
-              <span className="text-xs text-[#71717A]">Full-Stack Platform</span>
+              <span className="text-[#252A2D]" aria-hidden="true">·</span>
+              <span className="text-xs text-[#626A6D]">Full-Stack Platform</span>
             </div>
 
             <div className="flex items-center gap-3">
               <button
                 type="button"
                 onClick={() => onSelectProject(featuredProject)}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-[#1E3A2F] bg-[#1E3A2F]/8 hover:bg-[#1E3A2F]/15 rounded-md transition-colors cursor-pointer"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-[#6FA58B] bg-[#6FA58B]/10 hover:bg-[#6FA58B]/20 rounded border border-[#6FA58B]/25 transition-colors cursor-pointer"
               >
                 <Layers className="w-3.5 h-3.5" />
-                <span>Explore Architecture & Deep Dive</span>
+                <span>Architecture →</span>
               </button>
               <a
                 href={featuredProject.githubUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-[#1C1917] bg-white border border-[#D6D3CD] hover:border-[#1E3A2F] rounded-md transition-colors"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-[#F2F3F2] bg-[#14181A] border border-[#252A2D] hover:border-[#6FA58B]/50 rounded transition-colors"
               >
-                <Github className="w-3.5 h-3.5" />
-                <span>View on GitHub</span>
-                <ArrowUpRight className="w-3 h-3 text-[#71717A]" />
+                <Github className="w-3.5 h-3.5 text-[#92999B]" />
+                <span>View GitHub →</span>
               </a>
             </div>
           </div>
@@ -63,45 +60,43 @@ export function ProjectsSection({ onSelectProject }: ProjectsSectionProps) {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             <div className="lg:col-span-7 space-y-5">
               <div>
-                <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#1C1917] mb-2">
+                <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#F2F3F2] mb-2">
                   {featuredProject.title}
                 </h3>
-                <p className="text-sm font-medium text-[#1E3A2F]">
+                <p className="text-sm text-[#92999B]">
                   {featuredProject.tagline}
                 </p>
               </div>
 
-              <p className="text-sm sm:text-base text-[#52525B] leading-relaxed">
+              <p className="text-sm text-[#92999B] leading-relaxed">
                 {featuredProject.summary}
               </p>
 
-              {/* Personal Contribution Box */}
-              <div className="p-4 bg-[#F9F9F6] border border-[#E7E6E0] rounded-md">
-                <div className="flex items-center gap-2 text-xs font-semibold text-[#1E3A2F] uppercase tracking-wider mb-1.5">
-                  <ShieldCheck className="w-4 h-4 text-[#1E3A2F]" />
-                  <span>Contribution: Super Admin + Organizer Moderation / Ban Flow</span>
+              {/* Personal Contribution */}
+              <div className="p-4 bg-[#14181A] border border-[#252A2D] rounded">
+                <div className="flex items-center gap-2 text-xs font-mono text-[#6FA58B] uppercase tracking-wider mb-1.5">
+                  <ShieldCheck className="w-3.5 h-3.5 text-[#6FA58B]" />
+                  <span>My Contribution: Super Admin + Organizer Moderation / Ban Flow</span>
                 </div>
-                <p className="text-xs text-[#3F3F46] leading-relaxed mb-2">
-                  Engineered the frontend and backend workflow for handling event reports and banning organizers. Built the administrative queue, status transitions, appeals pipeline, and authored dedicated ban-flow unit and integration tests.
+                <p className="text-xs text-[#E4E4E7] leading-relaxed mb-2">
+                  Engineered the complete moderation workflow across frontend and backend services for handling event policy reports and banning organizers. Author of dedicated unit and integration test suites validating ban state transitions, access revocation, and client moderation UI.
                 </p>
-                <div className="text-[11px] text-[#71717A]">
-                  Repository includes dedicated ban-flow automated test suites across backend routes and client state.
+                <div className="text-[11px] font-mono text-[#626A6D]">
+                  Repository includes dedicated ban-flow backend and frontend test suites.
                 </div>
               </div>
 
-              {/* Technologies (Clean Unboxed Separator List) */}
+              {/* Technologies */}
               <div>
-                <div className="text-xs text-[#71717A] uppercase tracking-wider mb-2">
-                  Technologies
+                <div className="text-[11px] font-mono text-[#626A6D] uppercase tracking-wider mb-2">
+                  Stack
                 </div>
-                <div className="flex flex-wrap gap-x-2 gap-y-1 text-xs text-[#3F3F46]">
+                <div className="flex flex-wrap gap-x-2 gap-y-1 text-xs text-[#92999B]">
                   {featuredProject.technologies.map((tech, idx) => (
                     <span key={tech} className="inline-flex items-center gap-2">
-                      <span className="font-medium text-[#1C1917]">{tech}</span>
+                      <span className="text-[#F2F3F2]">{tech}</span>
                       {idx < featuredProject.technologies.length - 1 && (
-                        <span className="text-[#D6D3CD]" aria-hidden="true">
-                          ·
-                        </span>
+                        <span className="text-[#252A2D]" aria-hidden="true">·</span>
                       )}
                     </span>
                   ))}
@@ -109,45 +104,43 @@ export function ProjectsSection({ onSelectProject }: ProjectsSectionProps) {
               </div>
             </div>
 
-            {/* Architecture Preview Box */}
-            <div className="lg:col-span-5 bg-[#F9F9F6] border border-[#E7E6E0] rounded-lg p-5">
-              <div className="flex items-center justify-between text-xs text-[#71717A] mb-3">
-                <span className="font-mono uppercase tracking-wider">
-                  Topology Preview
-                </span>
-                <span className="text-[11px]">PostgreSQL · Express · Redis</span>
+            {/* Architecture Preview Visual */}
+            <div className="lg:col-span-5 bg-[#0B0D0E] border border-[#252A2D] rounded p-5">
+              <div className="flex items-center justify-between text-[11px] font-mono text-[#626A6D] mb-3">
+                <span className="uppercase tracking-wider">Topology Preview</span>
+                <span>Node · PostgreSQL · Redis</span>
               </div>
 
-              <pre className="p-3.5 bg-[#1C1917] text-[#E4E4E7] rounded text-[11px] leading-relaxed overflow-x-auto font-mono mb-4 border border-[#3F3F46]">
-{`[Client Layers]
- ├── Attendee & Organizer App
+              <pre className="p-3 bg-[#101315] text-[#92999B] rounded text-[11px] leading-relaxed overflow-x-auto font-mono mb-4 border border-[#1C2124]">
+{`[Client Apps]
+ ├── Attendee & Organizer Portal
  └── Super Admin Moderation Console
        │
-[Express.js Gateway + Socket.IO]
+[Express REST API + Socket.IO]
  ├── Role Guards & Ban Middleware
- ├── QR Scan & Atomic Check-in
- └── Reports & Appeals Engine
+ ├── QR Scan & Atomic Duplicate Lock
+ └── Reports & Appeals Workflow
        │
-[Prisma / PostgreSQL] + [Redis]`}
+[Prisma / PostgreSQL] + [Redis Cache]`}
               </pre>
 
-              <div className="space-y-2 text-xs text-[#52525B]">
-                <div className="font-medium text-[#1C1917] mb-1">
-                  Key Implemented Capabilities:
+              <div className="space-y-1.5 text-xs text-[#92999B]">
+                <div className="text-[#F2F3F2] font-medium text-[11px] font-mono uppercase tracking-wider mb-1">
+                  Key Capabilities:
                 </div>
-                <ul className="space-y-1 text-[11px]">
-                  <li>• QR check-in with atomic duplicate scan prevention</li>
-                  <li>• Payment initialization, confirmation & verification</li>
-                  <li>• Organization ban enforcement & appeal submissions</li>
-                  <li>• Admin metrics dashboard with CSV data export</li>
-                </ul>
+                <div className="text-[11px] text-[#92999B] space-y-1">
+                  <div>· QR check-in with atomic duplicate scan prevention</div>
+                  <div>· Payment initialization and Chapa confirmation</div>
+                  <div>· Organization ban enforcement and appeal queues</div>
+                  <div>· Admin metrics dashboard with CSV analytics export</div>
+                </div>
               </div>
 
-              <div className="mt-4 pt-4 border-t border-[#E7E6E0]">
+              <div className="mt-4 pt-3 border-t border-[#1C2124]">
                 <button
                   type="button"
                   onClick={() => onSelectProject(featuredProject)}
-                  className="w-full text-center py-2 text-xs font-medium text-[#1E3A2F] bg-white border border-[#D6D3CD] hover:border-[#1E3A2F] rounded transition-colors"
+                  className="w-full text-center py-1.5 text-xs font-medium text-[#6FA58B] hover:text-[#F2F3F2] transition-colors cursor-pointer"
                 >
                   View Full Architecture Diagram →
                 </button>
@@ -156,84 +149,72 @@ export function ProjectsSection({ onSelectProject }: ProjectsSectionProps) {
           </div>
         </div>
 
-        {/* Secondary Case Studies Grid: Project 02 & 03 */}
+        {/* Secondary Projects: 02 & 03 */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {secondaryProjects.map((project, idx) => (
             <div
               key={project.id}
-              className="bg-white border border-[#D6D3CD] rounded-lg p-6 sm:p-7 flex flex-col justify-between hover:border-[#1E3A2F] transition-all shadow-xs"
+              className="bg-[#101315] border border-[#252A2D] rounded p-6 sm:p-7 flex flex-col justify-between hover:border-[#6FA58B]/40 transition-all"
             >
               <div>
-                {/* Header Meta */}
-                <div className="flex items-center justify-between gap-2 border-b border-[#F0EFEA] pb-3 mb-4">
+                <div className="flex items-center justify-between border-b border-[#1C2124] pb-3 mb-4">
                   <div className="flex items-center gap-2">
-                    <span className="text-xs font-mono font-semibold text-[#1E3A2F] tracking-wider uppercase">
-                      Case Study 0{idx + 2}
+                    <span className="text-xs font-mono font-semibold text-[#6FA58B] tracking-wider uppercase">
+                      0{idx + 2}
                     </span>
-                    <span className="text-xs text-[#71717A]" aria-hidden="true">
-                      ·
-                    </span>
-                    <span className="text-xs text-[#71717A]">
+                    <span className="text-[#252A2D]" aria-hidden="true">·</span>
+                    <span className="text-xs text-[#626A6D]">
                       {project.id === "event-management-system"
-                        ? "Modular Next.js Platform"
+                        ? "Next.js Domain Architecture"
                         : "Next.js + FastAPI System"}
                     </span>
                   </div>
                 </div>
 
-                <h3 className="text-xl font-bold tracking-tight text-[#1C1917] mb-2">
+                <h3 className="text-xl font-bold tracking-tight text-[#F2F3F2] mb-2">
                   {project.title}
                 </h3>
-                <p className="text-xs font-medium text-[#1E3A2F] mb-3">
+                <p className="text-xs text-[#6FA58B] mb-3">
                   {project.tagline}
                 </p>
 
-                <p className="text-sm text-[#52525B] leading-relaxed mb-5">
+                <p className="text-sm text-[#92999B] leading-relaxed mb-5">
                   {project.summary}
                 </p>
 
-                {/* Domain Modules Preview */}
-                <div className="mb-5 p-3.5 bg-[#F9F9F6] border border-[#E7E6E0] rounded-md">
-                  <div className="text-[11px] font-mono uppercase tracking-wider text-[#71717A] mb-1.5 flex items-center gap-1.5">
-                    {project.id === "event-management-system" ? (
-                      <Terminal className="w-3.5 h-3.5 text-[#1E3A2F]" />
-                    ) : (
-                      <Binary className="w-3.5 h-3.5 text-[#1E3A2F]" />
-                    )}
-                    <span>Architecture & Modules</span>
+                {/* Modules */}
+                <div className="mb-5 p-3 bg-[#14181A] border border-[#1C2124] rounded text-xs">
+                  <div className="text-[10px] font-mono uppercase tracking-wider text-[#626A6D] mb-1.5">
+                    Domains & Modules
                   </div>
-                  <div className="flex flex-wrap gap-x-2 gap-y-1 text-xs text-[#27272A]">
-                    {project.domainModules.map((module, mIdx) => (
-                      <span key={module} className="inline-flex items-center gap-2">
-                        <span>{module}</span>
+                  <div className="flex flex-wrap gap-x-2 gap-y-1 text-[#E4E4E7]">
+                    {project.domainModules.map((mod, mIdx) => (
+                      <span key={mod} className="inline-flex items-center gap-2">
+                        <span>{mod}</span>
                         {mIdx < project.domainModules.length - 1 && (
-                          <span className="text-[#D6D3CD]" aria-hidden="true">
-                            /
-                          </span>
+                          <span className="text-[#252A2D]" aria-hidden="true">/</span>
                         )}
                       </span>
                     ))}
                   </div>
                 </div>
 
-                {/* Tech Stack List */}
+                {/* Stack */}
                 <div className="mb-6">
-                  <div className="text-xs text-[#71717A] uppercase tracking-wider mb-1.5">
+                  <div className="text-[10px] font-mono uppercase tracking-wider text-[#626A6D] mb-1.5">
                     Technologies
                   </div>
-                  <div className="flex flex-wrap gap-x-2 gap-y-1 text-xs text-[#52525B]">
+                  <div className="flex flex-wrap gap-x-2 gap-y-1 text-xs text-[#92999B]">
                     {project.technologies.slice(0, 8).map((tech, tIdx) => (
                       <span key={tech} className="inline-flex items-center gap-1.5">
-                        <span className="font-medium text-[#1C1917]">{tech}</span>
+                        <span className="text-[#F2F3F2]">{tech}</span>
                         {tIdx < 7 && (
-                          <span className="text-[#D6D3CD]" aria-hidden="true">
-                            ·
-                          </span>
+                          <span className="text-[#252A2D]" aria-hidden="true">·</span>
                         )}
                       </span>
                     ))}
                     {project.technologies.length > 8 && (
-                      <span className="text-[#71717A] text-[11px]">
+                      <span className="text-[#626A6D] text-[11px]">
                         +{project.technologies.length - 8} more
                       </span>
                     )}
@@ -242,24 +223,23 @@ export function ProjectsSection({ onSelectProject }: ProjectsSectionProps) {
               </div>
 
               {/* Actions */}
-              <div className="pt-4 border-t border-[#F0EFEA] flex items-center justify-between gap-3">
+              <div className="pt-4 border-t border-[#1C2124] flex items-center justify-between gap-3">
                 <button
                   type="button"
                   onClick={() => onSelectProject(project)}
-                  className="text-xs font-medium text-[#1E3A2F] hover:text-[#14261F] underline underline-offset-4 cursor-pointer"
+                  className="text-xs font-medium text-[#6FA58B] hover:text-[#F2F3F2] transition-colors cursor-pointer"
                 >
-                  Explore Architecture →
+                  Architecture →
                 </button>
 
                 <a
                   href={project.githubUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-[#1C1917] bg-[#F9F9F6] border border-[#D6D3CD] hover:border-[#1E3A2F] rounded-md transition-colors"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-[#F2F3F2] bg-[#14181A] border border-[#252A2D] hover:border-[#6FA58B]/50 rounded transition-colors"
                 >
-                  <Github className="w-3.5 h-3.5" />
-                  <span>View on GitHub</span>
-                  <ArrowUpRight className="w-3 h-3 text-[#71717A]" />
+                  <Github className="w-3.5 h-3.5 text-[#92999B]" />
+                  <span>View GitHub →</span>
                 </a>
               </div>
             </div>
