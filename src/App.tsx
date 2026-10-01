@@ -13,6 +13,7 @@ import { Project } from "./data/projects.ts";
 
 export default function App() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [triggerEl, setTriggerEl] = useState<HTMLElement | null>(null);
   const [activeSection, setActiveSection] = useState<string>("work");
 
   useEffect(() => {
@@ -43,15 +44,25 @@ export default function App() {
     };
   }, []);
 
+  const handleOpenProject = (project: Project, trigger?: HTMLElement) => {
+    setSelectedProject(project);
+    setTriggerEl(trigger ?? null);
+  };
+
+  const handleCloseProject = () => {
+    setSelectedProject(null);
+    setTriggerEl(null);
+  };
+
   return (
     <div className="min-h-screen bg-[#0B0D0E] text-[#F2F3F2] selection:bg-[#6FA58B]/25 selection:text-[#F2F3F2]">
-      {/* 3-Zone Sticky Navigation Bar */}
+      {/* Clean Sticky Navigation Bar */}
       <Navbar activeSection={activeSection} />
 
       {/* Main Content Sections */}
       <main id="main-content">
         <HeroSection />
-        <ProjectsSection onSelectProject={setSelectedProject} />
+        <ProjectsSection onSelectProject={handleOpenProject} />
         <AboutSection />
         <SkillsSection />
         <EngineeringApproach />
@@ -65,7 +76,8 @@ export default function App() {
       {/* Architecture Deep-Dive Modal */}
       <ProjectModal
         project={selectedProject}
-        onClose={() => setSelectedProject(null)}
+        triggerElement={triggerEl}
+        onClose={handleCloseProject}
       />
     </div>
   );
