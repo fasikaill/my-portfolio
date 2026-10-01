@@ -1,8 +1,12 @@
 import { useState } from "react";
 import { CONTACT_EMAIL, SITE_CONFIG } from "../config.ts";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, FileText } from "lucide-react";
 
-export function ContactSection() {
+interface ContactSectionProps {
+  onOpenResume?: (trigger?: HTMLElement) => void;
+}
+
+export function ContactSection({ onOpenResume }: ContactSectionProps) {
   const [copied, setCopied] = useState(false);
 
   // Check if email has been customized by the user
@@ -54,6 +58,18 @@ export function ContactSection() {
             >
               <span>Email</span>
             </a>
+
+            {/* View CV Button */}
+            {onOpenResume && (
+              <button
+                type="button"
+                onClick={(e) => onOpenResume(e.currentTarget)}
+                className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-medium text-[#F2F3F2] bg-[#14181A] border border-[#252A2D] hover:border-[#6FA58B]/50 hover:bg-[#1A1F22] rounded transition-all cursor-pointer"
+              >
+                <FileText className="w-3.5 h-3.5 text-[#6FA58B]" />
+                <span>View CV</span>
+              </button>
+            )}
 
             {/* Copy Button */}
             <button

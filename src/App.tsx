@@ -9,11 +9,16 @@ import { CurrentlySection } from "./components/CurrentlySection.tsx";
 import { ContactSection } from "./components/ContactSection.tsx";
 import { Footer } from "./components/Footer.tsx";
 import { ProjectModal } from "./components/ProjectModal.tsx";
+import { ResumeModal } from "./components/ResumeModal.tsx";
 import { Project } from "./data/projects.ts";
 
 export default function App() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const [triggerEl, setTriggerEl] = useState<HTMLElement | null>(null);
+  const [projectTriggerEl, setProjectTriggerEl] = useState<HTMLElement | null>(null);
+
+  const [isResumeOpen, setIsResumeOpen] = useState<boolean>(false);
+  const [resumeTriggerEl, setResumeTriggerEl] = useState<HTMLElement | null>(null);
+
   const [activeSection, setActiveSection] = useState<string>("work");
 
   useEffect(() => {
@@ -46,28 +51,38 @@ export default function App() {
 
   const handleOpenProject = (project: Project, trigger?: HTMLElement) => {
     setSelectedProject(project);
-    setTriggerEl(trigger ?? null);
+    setProjectTriggerEl(trigger ?? null);
   };
 
   const handleCloseProject = () => {
     setSelectedProject(null);
-    setTriggerEl(null);
+    setProjectTriggerEl(null);
+  };
+
+  const handleOpenResume = (trigger?: HTMLElement) => {
+    setIsResumeOpen(true);
+    setResumeTriggerEl(trigger ?? null);
+  };
+
+  const handleCloseResume = () => {
+    setIsResumeOpen(false);
+    setResumeTriggerEl(null);
   };
 
   return (
     <div className="min-h-screen bg-[#0B0D0E] text-[#F2F3F2] selection:bg-[#6FA58B]/25 selection:text-[#F2F3F2]">
       {/* Clean Sticky Navigation Bar */}
-      <Navbar activeSection={activeSection} />
+      <Navbar activeSection={activeSection} onOpenResume={handleOpenResume} />
 
       {/* Main Content Sections */}
       <main id="main-content">
-        <HeroSection />
+        <HeroSection onOpenResume={handleOpenResume} />
         <ProjectsSection onSelectProject={handleOpenProject} />
         <AboutSection />
         <SkillsSection />
         <EngineeringApproach />
         <CurrentlySection />
-        <ContactSection />
+        <ContactSection onOpenResume={handleOpenResume} />
       </main>
 
       {/* Minimal Footer */}
@@ -76,8 +91,15 @@ export default function App() {
       {/* Architecture Deep-Dive Modal */}
       <ProjectModal
         project={selectedProject}
-        triggerElement={triggerEl}
+        triggerElement={projectTriggerEl}
         onClose={handleCloseProject}
+      />
+
+      {/* Curriculum Vitae / Resume Modal */}
+      <ResumeModal
+        isOpen={isResumeOpen}
+        triggerElement={resumeTriggerEl}
+        onClose={handleCloseResume}
       />
     </div>
   );

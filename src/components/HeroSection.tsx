@@ -1,7 +1,11 @@
 import { SITE_CONFIG } from "../config.ts";
-import { ArrowDown, ArrowUpRight } from "lucide-react";
+import { ArrowDown, ArrowUpRight, FileText } from "lucide-react";
 
-export function HeroSection() {
+interface HeroSectionProps {
+  onOpenResume: (trigger?: HTMLElement) => void;
+}
+
+export function HeroSection({ onOpenResume }: HeroSectionProps) {
   return (
     <section className="pt-16 pb-20 md:pt-24 md:pb-28 border-b border-[#252A2D]">
       <div className="max-w-[1160px] mx-auto px-6">
@@ -29,7 +33,7 @@ export function HeroSection() {
             </p>
 
             {/* Actions */}
-            <div className="flex flex-wrap items-center gap-4">
+            <div className="flex flex-wrap items-center gap-3">
               <a
                 href="#work"
                 className="inline-flex items-center gap-2 px-4 py-2 text-xs font-medium text-[#0B0D0E] bg-[#6FA58B] hover:bg-[#82B69D] rounded transition-colors"
@@ -38,14 +42,23 @@ export function HeroSection() {
                 <ArrowDown className="w-3.5 h-3.5 text-[#0B0D0E]" />
               </a>
 
+              <button
+                type="button"
+                onClick={(e) => onOpenResume(e.currentTarget)}
+                className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-medium text-[#F2F3F2] bg-[#14181A] border border-[#252A2D] hover:border-[#6FA58B]/50 hover:bg-[#1A1F22] rounded transition-all cursor-pointer"
+              >
+                <FileText className="w-3.5 h-3.5 text-[#6FA58B]" />
+                <span>View CV</span>
+              </button>
+
               <a
                 href={SITE_CONFIG.githubUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-medium text-[#F2F3F2] bg-[#14181A] border border-[#252A2D] hover:border-[#6FA58B]/50 hover:bg-[#1A1F22] rounded transition-all"
+                className="inline-flex items-center gap-1 px-4 py-2 text-xs font-medium text-[#92999B] hover:text-[#F2F3F2] transition-colors"
               >
                 <span>GitHub</span>
-                <ArrowUpRight className="w-3.5 h-3.5 text-[#92999B]" />
+                <ArrowUpRight className="w-3.5 h-3.5" />
               </a>
             </div>
           </div>
@@ -85,6 +98,17 @@ export function HeroSection() {
                   <div>React · Next.js · Node.js</div>
                   <div className="mt-0.5">FastAPI · PostgreSQL · Redis</div>
                 </div>
+              </div>
+
+              <div className="pt-4 border-t border-[#1C2124] flex items-center justify-between">
+                <span className="text-xs text-[#626A6D]">Curriculum Vitae</span>
+                <button
+                  type="button"
+                  onClick={(e) => onOpenResume(e.currentTarget)}
+                  className="text-xs text-[#6FA58B] hover:underline cursor-pointer"
+                >
+                  Open CV Sheet →
+                </button>
               </div>
             </div>
           </div>

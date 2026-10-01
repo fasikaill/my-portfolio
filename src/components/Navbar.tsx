@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import { SITE_CONFIG } from "../config.ts";
-import { Github, Menu, X, ArrowUpRight } from "lucide-react";
+import { Github, Menu, X, ArrowUpRight, FileText } from "lucide-react";
 
 interface NavbarProps {
   activeSection: string;
+  onOpenResume: (trigger?: HTMLElement) => void;
 }
 
-export function Navbar({ activeSection }: NavbarProps) {
+export function Navbar({ activeSection, onOpenResume }: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -66,8 +67,18 @@ export function Navbar({ activeSection }: NavbarProps) {
           })}
         </nav>
 
-        {/* Right: GitHub Action */}
-        <div className="flex items-center gap-4">
+        {/* Right: CV and GitHub Actions */}
+        <div className="flex items-center gap-3">
+          <button
+            type="button"
+            onClick={(e) => onOpenResume(e.currentTarget)}
+            className="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-medium text-[#0B0D0E] bg-[#6FA58B] hover:bg-[#82B69D] rounded transition-colors cursor-pointer"
+            aria-label="View Curriculum Vitae"
+          >
+            <FileText className="w-3 h-3" />
+            <span>CV</span>
+          </button>
+
           <a
             href={SITE_CONFIG.githubUrl}
             target="_blank"
@@ -100,6 +111,18 @@ export function Navbar({ activeSection }: NavbarProps) {
       {/* Mobile Menu Panel */}
       {mobileMenuOpen && (
         <div className="md:hidden border-b border-[#252A2D] bg-[#101315] px-6 py-4 space-y-3">
+          <button
+            type="button"
+            onClick={(e) => {
+              setMobileMenuOpen(false);
+              onOpenResume(e.currentTarget);
+            }}
+            className="w-full text-left inline-flex items-center gap-2 text-sm font-medium text-[#6FA58B] py-1.5"
+          >
+            <FileText className="w-4 h-4" />
+            <span>View CV / Resume</span>
+          </button>
+
           {navItems.map((item) => (
             <a
               key={item.href}
